@@ -48,6 +48,17 @@
   .obra:hover img{transform:scale(1.02)}
   .oculta{display:none}
 
+  /* Portada y galerías */
+  .portada{text-align:center;padding:24px 0 56px}
+  .portada .nota{max-width:560px;margin:10px auto 0}
+  .cuaderno{margin:32px 0 30px;cursor:zoom-in}
+  .cuaderno img{width:100%;display:block;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .bloque{padding:48px 0 0;border-top:1px solid var(--linea);margin-top:8px}
+  .bloque+.bloque{margin-top:48px}
+  .galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .galeria .obra{margin:0}
+  .galeria .obra img{aspect-ratio:4/5;object-fit:cover}
+
   /* Contacto y sobre mí */
   .dos{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
   .boton{display:inline-block;padding:12px 26px;border:1px solid var(--tinta);text-decoration:none;font-size:.9rem;letter-spacing:.04em;transition:.2s}
@@ -65,7 +76,7 @@
   .visor button{position:absolute;background:none;border:0;color:#fff;font-size:2.2rem;cursor:pointer;padding:10px 16px}
   .cerrar{top:10px;right:10px}.ant{left:6px;top:50%;transform:translateY(-50%)}.sig{right:6px;top:50%;transform:translateY(-50%)}
 
-  @media (max-width:900px){ .mosaico{grid-template-columns:repeat(3,1fr)} }
+  @media (max-width:900px){ .mosaico,.galeria{grid-template-columns:repeat(3,1fr)} }
   @media (max-width:700px){
     .barra{height:auto;flex-direction:column;align-items:flex-start;padding:10px 20px;gap:4px}
     nav{gap:14px;width:100%}
@@ -73,6 +84,7 @@
     .vista{padding:30px 0 50px}
     h2{font-size:2rem}
     .mosaico{grid-template-columns:repeat(2,1fr);column-gap:8px}
+    .galeria{grid-template-columns:repeat(2,1fr);gap:8px}
     .obra{margin-bottom:8px}
     .dos{grid-template-columns:1fr;gap:24px}
   }
@@ -97,7 +109,7 @@
   <div class="envoltura barra">
     <a class="marca" href="#inicio" id="marca">flrdeelis.tatu</a>
     <nav>
-      <a href="#inicio">Tatuajes y diseños</a>
+      <a href="#inicio">Tatuajes</a>
       <a href="#grabado">Grabado</a>
       <a href="#acuarela">Acuarela</a>
       <a href="#contacto">Contacto</a>
@@ -108,18 +120,23 @@
 <main class="envoltura">
 
   <section class="vista" id="inicio">
-    <div class="cabecera">
-      <div>
-        <h1 id="titulo-portada">flrdeelis.tatu</h1>
-        <p class="nota" id="frase"></p>
-      </div>
-      <div class="filtros">
-        <button class="activo" data-filtro="todo">Todo</button>
-        <button data-filtro="tatuaje">Tatuajes</button>
-        <button data-filtro="diseno">Diseños disponibles</button>
-      </div>
+    <div class="portada">
+      <h1 id="titulo-portada">flrdeelis.tatu</h1>
+      <p class="nota" id="frase"></p>
+      <figure class="cuaderno"><img src="fotos/disenos-cuaderno.jpg" alt="Cuaderno de diseños"></figure>
+      <a class="boton" href="#contacto">Pedir una cita</a>
     </div>
-    <div class="mosaico" id="mosaico-inicio"></div>
+
+    <div class="bloque">
+      <div class="cabecera"><div><h2>Tatuajes</h2><p class="nota">Trabajos realizados</p></div></div>
+      <div class="galeria" data-lista="tatuajes"></div>
+    </div>
+
+    <div class="bloque">
+      <div class="cabecera"><div><h2>Diseños disponibles</h2><p class="nota">Diseños propios listos para tatuar. Cada uno se tatúa una sola vez.</p></div></div>
+      <div class="galeria" data-lista="disenos"></div>
+      <div class="mosaico" data-lista="laminas" style="margin-top:12px"></div>
+    </div>
   </section>
 
   <section class="vista" id="grabado">
@@ -166,7 +183,7 @@
 /* ================= TUS DATOS ================= */
 const DATOS = {
   nombre: "flrdeelis.tatu",
-  frase:  "Tatuajes y diseños originales. Grabado y acuarela en las otras pestañas.",
+  frase:  "Tatuaje de línea fina y diseño original. Grabado y acuarela en sus pestañas.",
   sobreMi: "",  /* escribe aquí unas líneas sobre ti y aparecerán en Contacto */
   correo: "elisacp17@gmail.com",
   ciudad: "Santiago, Chile",
@@ -176,7 +193,7 @@ const DATOS = {
 /* ================= TUS OBRAS =================
    archivo: nombre de la foto dentro de la carpeta "fotos"
    grande: true  hace que la obra ocupe el doble de ancho
-   La portada mezcla tatuajes y diseños automáticamente.
+   En la portada van primero los tatuajes y luego los diseños.
 */
 const OBRAS = {
   tatuajes: [
@@ -188,27 +205,28 @@ const OBRAS = {
     { archivo: "tatuaje-1.jpg" },
   ],
   disenos: [
-    { archivo: "lamina-mariposas.jpg", grande: true },
     { archivo: "diseno-2.jpg" },
-    { archivo: "diseno-8.jpg" },
-    { archivo: "lamina-1.jpg", grande: true },
-    { archivo: "diseno-4.jpg" },
-    { archivo: "diseno-9.jpg" },
-    { archivo: "lamina-3.jpg" },
     { archivo: "diseno-3.jpg" },
-    { archivo: "lamina-7.jpg" },
+    { archivo: "diseno-4.jpg" },
     { archivo: "diseno-5.jpg" },
-    { archivo: "lamina-2.jpg", grande: true },
     { archivo: "diseno-6.jpg" },
-    { archivo: "lamina-8.jpg" },
     { archivo: "diseno-7.jpg" },
+    { archivo: "diseno-8.jpg" },
+    { archivo: "diseno-9.jpg" },
+  ],
+  laminas: [
+    { archivo: "lamina-mariposas.jpg", grande: true },
+    { archivo: "lamina-1.jpg", grande: true },
+    { archivo: "lamina-7.jpg" },
+    { archivo: "lamina-3.jpg" },
+    { archivo: "lamina-2.jpg", grande: true },
+    { archivo: "lamina-8.jpg" },
     { archivo: "lamina-11.jpg" },
     { archivo: "lamina-4.jpg" },
     { archivo: "lamina-9.jpg" },
     { archivo: "lamina-5.jpg" },
     { archivo: "lamina-10.jpg" },
     { archivo: "lamina-6.jpg" },
-    { archivo: "disenos-cuaderno.jpg", grande: true },
   ],
   grabado: [
     { archivo: "grabado-1.jpg", grande: true },
@@ -252,42 +270,27 @@ function ajustar(fig){
   const alto=fig.querySelector("img").getBoundingClientRect().height;
   if(alto) fig.style.gridRowEnd="span "+Math.ceil((alto+hueco)/fila);
 }
-function ajustarTodo(){ document.querySelectorAll(".obra").forEach(ajustar); }
+function ajustarTodo(){ document.querySelectorAll(".mosaico .obra").forEach(ajustar); }
 addEventListener("resize",ajustarTodo);
 
 function crear(o,tipo,lista,indice){
   const f=document.createElement("figure");
   f.className="obra"+(o.grande?" grande":""); f.dataset.tipo=tipo;
   const img=new Image(); img.alt="";
-  img.onload=()=>{ img.classList.add("lista"); ajustar(f); };
+  img.onload=()=>{ img.classList.add("lista"); if(f.parentElement&&f.parentElement.classList.contains("mosaico")) ajustar(f); };
   img.src="fotos/"+o.archivo;
   f.appendChild(img);
   f.onclick=()=>abrir(lista(),indice(f));
   return f;
 }
 
-// Portada: mezcla tatuajes y diseños
-const mezcla=[]; const T=OBRAS.tatuajes, D=OBRAS.disenos;
-let ti=0, di=0;
-while(ti<T.length||di<D.length){
-  if(ti<T.length) mezcla.push({...T[ti++],tipo:"tatuaje"});
-  for(let k=0;k<3&&di<D.length;k++) mezcla.push({...D[di++],tipo:"diseno"});
-}
-const gInicio=$("#mosaico-inicio");
-const visibles=()=>[...gInicio.querySelectorAll(".obra:not(.oculta)")];
-mezcla.forEach(o=>gInicio.appendChild(crear(o,o.tipo,()=>visibles().map(f=>f.querySelector("img").src),f=>visibles().indexOf(f))));
-document.querySelectorAll(".filtros button").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll(".filtros button").forEach(x=>x.classList.toggle("activo",x===b));
-  const v=b.dataset.filtro;
-  gInicio.querySelectorAll(".obra").forEach(f=>f.classList.toggle("oculta",v!=="todo"&&f.dataset.tipo!==v));
-  ajustarTodo();
-});
-
-// Otras pestañas
+// Galerías
 document.querySelectorAll("[data-lista]").forEach(g=>{
   (OBRAS[g.dataset.lista]||[]).forEach(o=>g.appendChild(crear(o,g.dataset.lista,
     ()=>[...g.querySelectorAll("img")].map(x=>x.src),f=>[...g.children].indexOf(f))));
 });
+
+$(".cuaderno").onclick=()=>abrir([$(".cuaderno img").src],0);
 
 // Pestañas
 function mostrarVista(){
