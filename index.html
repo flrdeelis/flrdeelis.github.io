@@ -59,6 +59,9 @@
   .galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   .galeria .obra{margin:0}
   .galeria .obra img{aspect-ratio:4/5;object-fit:cover}
+  .galeria{grid-auto-flow:dense}
+  .galeria .obra.grande{grid-column:span 2;grid-row:span 2}
+  .galeria .obra.grande img{aspect-ratio:auto;height:100%}
 
   /* Contacto y sobre mí */
   .dos{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
@@ -216,6 +219,7 @@ const OBRAS = {
     { archivo: "diseno-7c.jpg" },
     { archivo: "diseno-8.jpg" },
     { archivo: "diseno-9.jpg" },
+    { archivo: "lamina-mariposas.jpg", grande: true },
     { archivo: "diseno-10.jpg" },
     { archivo: "diseno-11.jpg" },
     { archivo: "diseno-12.jpg" },
@@ -228,7 +232,6 @@ const OBRAS = {
     { archivo: "diseno-19.jpg" },
   ],
   laminas: [
-    { archivo: "lamina-mariposas.jpg", grande: true },
     { archivo: "lamina-1.jpg", grande: true },
     { archivo: "lamina-7.jpg" },
     { archivo: "lamina-3.jpg" },
