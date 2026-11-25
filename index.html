@@ -61,7 +61,7 @@
   .galeria .obra img{aspect-ratio:4/5;object-fit:cover}
   .galeria{grid-auto-flow:dense}
   .galeria .obra.grande{grid-column:span 2;grid-row:span 2}
-  .galeria .obra.grande{position:relative;min-height:100%}
+  .galeria .obra.grande{position:relative;aspect-ratio:4/5}
   .galeria .obra.grande img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
 
   /* Contacto y sobre mí */
@@ -235,7 +235,7 @@ const OBRAS = {
   ],
   laminas: [
     { archivo: "lamina-7.jpg" },
-    { archivo: "lamina-3.jpg" },
+    { archivo: "lamina-3.jpg", grande: true },
     { archivo: "lamina-2.jpg", grande: true },
     { archivo: "lamina-9.jpg" },
     { archivo: "lamina-10.jpg" },
