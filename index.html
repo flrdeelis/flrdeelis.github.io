@@ -43,6 +43,8 @@
   .mosaico{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:4px;column-gap:12px;row-gap:0;grid-auto-flow:dense}
   .obra{margin:0 0 12px;cursor:zoom-in;overflow:hidden;background:#4a141b;align-self:start}
   .obra.grande{grid-column:span 2}
+  .mosaico .obra.mediano{grid-column:span 2;background:none}
+  .mosaico .obra.mediano img{width:78%;margin:0 auto}
   .obra img{width:100%;height:auto;display:block;transition:transform .4s,opacity .4s;opacity:0}
   .obra img.lista{opacity:1}
   .obra:hover img{transform:scale(1.02)}
@@ -198,6 +200,7 @@ const DATOS = {
 /* ================= TUS OBRAS =================
    archivo: nombre de la foto dentro de la carpeta "fotos"
    grande: true  hace que la obra ocupe el doble de ancho
+   mediano: true  (en láminas) la hace un poco más chica que grande
    En la portada van primero los tatuajes y luego los diseños.
 */
 const OBRAS = {
@@ -234,10 +237,10 @@ const OBRAS = {
     { archivo: "diseno-19.jpg" },
   ],
   laminas: [
-    { archivo: "lamina-7.jpg" },
-    { archivo: "lamina-3.jpg", grande: true },
+    { archivo: "lamina-3.jpg", mediano: true },
     { archivo: "lamina-2.jpg", grande: true },
     { archivo: "lamina-9.jpg" },
+    { archivo: "lamina-7.jpg" },
     { archivo: "lamina-10.jpg" },
   ],
   grabado: [
@@ -288,7 +291,7 @@ addEventListener("resize",ajustarTodo);
 
 function crear(o,tipo,lista,indice){
   const f=document.createElement("figure");
-  f.className="obra"+(o.grande?" grande":""); f.dataset.tipo=tipo;
+  f.className="obra"+(o.grande?" grande":"")+(o.mediano?" mediano":""); f.dataset.tipo=tipo;
   const img=new Image(); img.alt="";
   img.onload=()=>{ img.classList.add("lista"); if(f.parentElement&&f.parentElement.classList.contains("mosaico")) ajustar(f); };
   img.src="fotos/"+o.archivo;
