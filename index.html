@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>flrdeelis.tatu · Tatuajes y diseños</title>
+<meta name="description" content="Tatuajes, diseños disponibles y grabado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#5c1a22; --tinta:#f4ebe0; --gris:#d8b9b0; --linea:#7a3a40; --acento:#f2bf8f;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--papel);color:var(--tinta);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6}
+  a{color:inherit}
+  .envoltura{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* Menú */
+  header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--papel) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--linea)}
+  .barra{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+  .marca{font-family:"Cormorant Garamond",serif;font-size:1.5rem;font-weight:600;text-decoration:none;letter-spacing:.02em}
+  nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+  nav a{text-decoration:none;font-size:.9rem;color:var(--gris);white-space:nowrap}
+  nav a:hover{color:var(--tinta)}
+
+  /* Portada */
+  .portada{padding:90px 0 70px;text-align:center;border-bottom:1px solid var(--linea)}
+  .portada h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.05;margin:0 0 14px}
+  .portada p{color:var(--gris);max-width:520px;margin:0 auto 28px}
+  .boton{display:inline-block;padding:12px 26px;border:1px solid var(--tinta);text-decoration:none;font-size:.9rem;letter-spacing:.04em;transition:.2s}
+  .boton:hover{background:var(--tinta);color:var(--papel)}
+
+  /* Secciones */
+  section{padding:70px 0;border-bottom:1px solid var(--linea)}
+  .titulo{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+  h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:2.4rem;margin:0}
+  .nota{color:var(--gris);font-size:.95rem;margin:0}
+  .galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .obra{margin:0;cursor:zoom-in}
+  .obra .marco{aspect-ratio:4/5;overflow:hidden;background:#e8e2d6}
+  .obra img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .obra:hover img{transform:scale(1.03)}
+  .laminas{display:block;columns:3;column-gap:14px;margin-top:14px}
+  .laminas .obra{break-inside:avoid;margin-bottom:14px}
+  .laminas .marco{aspect-ratio:auto}
+  .laminas img{height:auto}
+  @media (max-width:700px){.laminas{columns:2;column-gap:10px}.laminas .obra{margin-bottom:10px}}
+  .obra figcaption{font-size:.85rem;color:var(--gris);padding-top:8px}
+  .obra figcaption b{color:var(--tinta);font-weight:500}
+  .disponible{display:block;color:var(--acento);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.cuaderno{margin:0 0 28px}.cuaderno img{width:100%;display:block}.cuaderno figcaption{font-size:.85rem;color:var(--gris);padding-top:8px}
+  .pronto{padding:40px;border:1px dashed var(--linea);text-align:center;color:var(--gris)}
+
+  /* Sobre mí y contacto */
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .dos p{margin-top:0}
+  .datos{list-style:none;padding:0;margin:0}
+  .datos li{padding:12px 0;border-bottom:1px solid var(--linea);display:flex;justify-content:space-between;gap:12px}
+  .datos span{color:var(--gris)}
+  footer{padding:30px 0;color:var(--gris);font-size:.85rem;text-align:center}
+
+  /* Visor de fotos */
+  .visor{position:fixed;inset:0;background:rgba(30,8,11,.95);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;flex-direction:column;gap:12px}
+  .visor.abierto{display:flex}
+  .visor img{max-width:100%;max-height:82vh;object-fit:contain}
+  .visor p{color:#ddd;margin:0;font-size:.9rem;text-align:center}
+  .visor button{position:absolute;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer;padding:10px 16px}
+  .cerrar{top:10px;right:10px}.ant{left:6px;top:50%;transform:translateY(-50%)}.sig{right:6px;top:50%;transform:translateY(-50%)}
+
+  @media (max-width:700px){
+    .barra{height:auto;flex-direction:column;align-items:flex-start;padding:10px 20px;gap:6px}
+    nav{gap:18px;width:100%}
+    .portada{padding:60px 0 50px}
+    section{padding:50px 0}
+    h2{font-size:2rem}
+    .dos{grid-template-columns:1fr;gap:24px}
+    .galeria{grid-template-columns:repeat(2,1fr);gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ============================================================
+  CÓMO EDITAR ESTA PÁGINA (sin saber programar)
+  ------------------------------------------------------------
+  1. Pon tus fotos en la carpeta "fotos".
+  2. Más abajo, busca "TUS DATOS" y "TUS OBRAS" y cambia los textos.
+  3. Para agregar una obra, copia una línea de la lista y cambia
+     el nombre del archivo y la descripción.
+  4. Para abrir la sección Grabado, deja obras en la lista "grabado".
+  ============================================================
+-->
+
+<header>
+  <div class="envoltura barra">
+    <a class="marca" href="#inicio" id="marca">flrdeelis.tatu</a>
+    <nav>
+      <a href="#tatuajes">Tatuajes</a>
+      <a href="#disenos">Diseños disponibles</a>
+      <a href="#grabado">Grabado</a>
+      <a href="#acuarela">Acuarela y dibujo</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="portada" id="inicio">
+    <div class="envoltura">
+      <h1 id="titulo-portada">flrdeelis.tatu</h1>
+      <p id="frase">Tatuaje de línea fina y diseño original. Grabado, acuarela y dibujo.</p>
+      <a class="boton" href="#contacto">Pedir una cita</a>
+    </div>
+  </div>
+
+  <section id="tatuajes">
+    <div class="envoltura">
+      <div class="titulo"><h2>Tatuajes</h2><p class="nota">Trabajos realizados</p></div>
+      <div class="galeria" data-lista="tatuajes"></div>
+    </div>
+  </section>
+
+  <section id="disenos">
+    <div class="envoltura">
+      <div class="titulo"><h2>Diseños disponibles</h2><p class="nota">Diseños propios listos para tatuar. Cada uno se tatúa una sola vez.</p></div>
+      <figure class="cuaderno"><img src="fotos/disenos-cuaderno.jpg" alt="Vista general del cuaderno de diseños"><figcaption>Vista general del cuaderno</figcaption></figure>
+      <div class="galeria" data-lista="disenos"></div>
+      <div class="galeria laminas" data-lista="laminas"></div>
+    </div>
+  </section>
+
+  <section id="grabado">
+    <div class="envoltura">
+      <div class="titulo"><h2>Grabado</h2><p class="nota">Linograbado, xilografía y otras técnicas</p></div>
+      <div class="galeria laminas" data-lista="grabado"></div>
+    </div>
+  </section>
+
+  <section id="acuarela">
+    <div class="envoltura">
+      <div class="titulo"><h2>Acuarela y dibujo</h2><p class="nota">Otras obras</p></div>
+      <div class="galeria laminas" data-lista="acuarela"></div>
+    </div>
+  </section>
+
+  <section id="sobre-mi">
+    <div class="envoltura dos">
+      <h2>Sobre mí</h2>
+      <div>
+        <p id="sobre-texto">Aquí va un párrafo corto sobre ti: desde cuándo tatúas, qué estilos te gustan, dónde trabajas y cómo es tu proceso con cada persona.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="envoltura dos">
+      <div>
+        <h2>Contacto</h2>
+        <p class="nota" style="margin-top:10px">Escríbeme con tu idea, la zona del cuerpo y el tamaño aproximado. Si es un diseño disponible, dime cuál.</p>
+        <p style="margin-top:24px"><a class="boton" id="boton-correo" href="#">Escribirme un correo</a></p>
+      </div>
+      <ul class="datos">
+        <li><span>Correo</span><b id="dato-correo">elisacp17@gmail.com</b></li>
+        <li><span>Ciudad</span><b id="dato-ciudad">Santiago, Chile</b></li>
+        <li><span>Atención</span><b id="dato-horario">Solo con cita</b></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer><span id="pie">flrdeelis.tatu</span> · Todos los diseños son originales</footer>
+
+<div class="visor" id="visor" role="dialog" aria-label="Foto ampliada">
+  <button class="cerrar" aria-label="Cerrar">×</button>
+  <button class="ant" aria-label="Anterior">‹</button>
+  <img alt="">
+  <p></p>
+  <button class="sig" aria-label="Siguiente">›</button>
+</div>
+
+<script>
+/* ================= TUS DATOS ================= */
+const DATOS = {
+  nombre: "flrdeelis.tatu",
+  frase:  "Tatuaje de línea fina y diseño original. Grabado, acuarela y dibujo.",
+  sobreMi: ""  /* escribe aquí unas líneas sobre ti y la sección aparecerá sola */,
+  correo: "elisacp17@gmail.com",
+  ciudad: "Santiago, Chile",
+  horario: "Solo con cita"
+};
+
+/* ================= TUS OBRAS =================
+   archivo: nombre de la foto dentro de la carpeta "fotos"
+   titulo:  nombre corto de la obra
+   detalle: zona, tamaño o técnica (opcional)
+   Mientras no haya fotos, se muestran ejemplos de muestra.
+*/
+const OBRAS = {
+  tatuajes: [
+    { archivo: "tatuaje-7.jpg", titulo: "", detalle: "" },
+    { archivo: "tatuaje-6.jpg", titulo: "", detalle: "" },
+    { archivo: "tatuaje-3.jpg", titulo: "", detalle: "" },
+    { archivo: "tatuaje-4.jpg", titulo: "", detalle: "" },
+    { archivo: "tatuaje-2.jpg", titulo: "", detalle: "" },
+    { archivo: "tatuaje-1.jpg", titulo: "", detalle: "" },
+  ],
+  disenos: [
+    { archivo: "diseno-2.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-3.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-4.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-5.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-6.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-7.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-8.jpg", titulo: "", detalle: "" },
+    { archivo: "diseno-9.jpg", titulo: "", detalle: "" },
+  ],
+  laminas: [
+    { archivo: "lamina-1.jpg", titulo: "", detalle: "" },
+    { archivo: "lamina-2.jpg", titulo: "", detalle: "" },
+    { archivo: "lamina-3.jpg", titulo: "", detalle: "" },
+    { archivo: "lamina-4.jpg", titulo: "", detalle: "" },
+    { archivo: "lamina-5.jpg", titulo: "", detalle: "" },
+    { archivo: "lamina-6.jpg", titulo: "", detalle: "" },
+  ],
+  grabado: [
+    { archivo: "grabado-1.jpg", titulo: "", detalle: "" },
+    { archivo: "grabado-2.jpg", titulo: "", detalle: "" },
+    { archivo: "grabado-3.jpg", titulo: "", detalle: "" },
+    { archivo: "grabado-4.jpg", titulo: "", detalle: "" },
+    { archivo: "grabado-matriz.jpg", titulo: "", detalle: "" },
+  ],
+  acuarela: [
+    { archivo: "acuarela-9.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-2.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-3.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-7.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-6.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-5.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-8.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-4.jpg", titulo: "", detalle: "" },
+    { archivo: "acuarela-1.jpg", titulo: "", detalle: "" },
+    { archivo: "dibujo-1.jpg", titulo: "", detalle: "" },
+  ]
+};
+/* ============================================ */
+
+// Muestras dibujadas mientras no haya fotos reales
+function muestra(texto, i){
+  const tonos=["#e3dccf","#ddd5c6","#e8e1d3","#d8cfbf"];
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+    <rect width="400" height="500" fill="${tonos[i%4]}"/>
+    <g fill="none" stroke="#1b1a18" stroke-width="2" opacity=".55">
+      <circle cx="200" cy="215" r="${70+(i%3)*14}"/>
+      <path d="M120 ${300+i*4} Q200 ${180-i*6} 280 ${300+i*4}"/>
+      <path d="M150 360 L250 360"/>
+    </g>
+    <text x="200" y="440" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#1b1a18" opacity=".6">${texto}</text>
+  </svg>`;
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+}
+
+// Rellenar textos
+const $=s=>document.querySelector(s);
+["#marca","#titulo-portada","#pie"].forEach(s=>$(s).textContent=DATOS.nombre);
+$("#frase").textContent=DATOS.frase;
+$("#sobre-texto").textContent=DATOS.sobreMi;
+if(!DATOS.sobreMi.trim()){ $("#sobre-mi").remove(); document.querySelector('nav a[href="#sobre-mi"]').remove(); }
+$("#dato-correo").textContent=DATOS.correo;
+$("#dato-ciudad").textContent=DATOS.ciudad;
+$("#dato-horario").textContent=DATOS.horario;
+const asunto="Consulta de tatuaje";
+const cuerpo="Hola, me gustaría tatuarme.\n\nIdea:\nZona del cuerpo:\nTamaño aproximado:\n¿Diseño disponible? (cuál):\n";
+$("#boton-correo").href=`mailto:${DATOS.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+document.title=DATOS.nombre+" · Tatuajes y diseños";
+
+// Galerías
+let actual=[], pos=0;
+document.querySelectorAll("[data-lista]").forEach(g=>{
+  const lista=OBRAS[g.dataset.lista]||[];
+  if(!lista.length){ g.outerHTML='<div class="pronto">Próximamente</div>'; return; }
+  lista.forEach((o,i)=>{
+    const src=o.archivo?("fotos/"+o.archivo):muestra(o.titulo,i);
+    const f=document.createElement("figure"); f.className="obra";
+    f.innerHTML=`<div class="marco"><img loading="lazy" alt="${o.titulo}"></div>
+      ${(o.titulo||o.detalle||o.disponible)?`<figcaption>${o.disponible?'<span class="disponible">Disponible</span>':''}<b></b><br><span class="det"></span></figcaption>`:''}`;
+    f.querySelector("img").src=src;
+    if(f.querySelector("b")) f.querySelector("b").textContent=o.titulo;
+    if(f.querySelector(".det")) f.querySelector(".det").textContent=o.detalle||"";
+    f.onclick=()=>abrir(lista.map((x,j)=>({src:x.archivo?"fotos/"+x.archivo:muestra(x.titulo,j),t:[x.titulo,x.detalle].filter(Boolean).join(" · ")})),i);
+    g.appendChild(f);
+  });
+});
+
+// Visor
+const visor=$("#visor");
+function mostrar(){ visor.querySelector("img").src=actual[pos].src; visor.querySelector("p").textContent=actual[pos].t; }
+function abrir(l,i){ actual=l; pos=i; mostrar(); visor.classList.add("abierto"); }
+visor.querySelector(".cerrar").onclick=()=>visor.classList.remove("abierto");
+visor.querySelector(".ant").onclick=e=>{e.stopPropagation();pos=(pos-1+actual.length)%actual.length;mostrar();};
+visor.querySelector(".sig").onclick=e=>{e.stopPropagation();pos=(pos+1)%actual.length;mostrar();};
+visor.onclick=e=>{ if(e.target===visor) visor.classList.remove("abierto"); };
+document.addEventListener("keydown",e=>{
+  if(!visor.classList.contains("abierto")) return;
+  if(e.key==="Escape") visor.classList.remove("abierto");
+  if(e.key==="ArrowLeft") visor.querySelector(".ant").click();
+  if(e.key==="ArrowRight") visor.querySelector(".sig").click();
+});
+</script>
+</body>
+</html>
